@@ -3,8 +3,8 @@ var pcGirlAll = document.getElementById('pcGirlAll');
 var fragment = document.createDocumentFragment();
 var apiList1 = document.getElementById('PcGirlPhoto');
 var myList2 = document.getElementById('catchMynews1');
-var myApi ="https://test-cms-alpha.herokuapp.com/sites/3/profiles.json"
-var myApi1 ="https://test-cms-alpha.herokuapp.com/sites/3/tweets.json"
+var myApi ="https://test-cms-alpha.herokuapp.com/sites/4/profiles.json"
+var myApi1 ="https://test-cms-alpha.herokuapp.com/sites/4/tweets.json"
 function loadIndexStaff(){
   let xhr = new XMLHttpRequest();
   xhr.open("GET",myApi,true);
@@ -81,59 +81,3 @@ function loadnews(){
 }
   loadIndexStaff()
   loadnews()
-
-  var  schedulesGirls= document.getElementById('schedule'); 
-  var myApi3 ="https://test-cms-alpha.herokuapp.com/sites/6/schedules.json"
-  function addNewSchedules(MyJson){
-   for(let i = 0; i < MyJson.length; i++){
-     let ss =new Date(MyJson[i].period)
-     let t =ss.toString();
-     let addDate = t.substring(4,16);
-     let addDate1 = t.substring(4,11);
-     let addtime1 = t.substring(16,18);
-     let addtime2 = t.substring(19,21);
-     MyJson[i].date= addDate;
-     MyJson[i].date1= addDate1;
-     MyJson[i].profile.time= addtime1+'時〜'+addtime2+'時';
-   }
-   function sortNumber(x, y){
-     return  new Date(x.date)-new Date(y.date).getTime();
-   }
-   return MyJson.sort(sortNumber)
-  }
-  function groupBy( array , f ) {
-   let groups = {};
-   array.forEach( function( o ) {
-     let group = JSON.stringify( f(o) );
-       groups[group] = groups[group] || [];
-       groups[group].push( o );
-       
-   });
-   return Object.keys(groups).map( function(group) {
-       return groups[group];
-   });
-  }
-  function loadMySchedules(){
-   let xhr = new XMLHttpRequest();
-   xhr.open("GET",myApi3,true);
-   xhr.onload = function(){
-     if(this.status == 200){
-      var json = JSON.parse(this.responseText);
-       console.log(json);
-        let newList = addNewSchedules(json)
-       let sorted = groupBy(newList, function(item){
-         return [item.date];
-       })
-      console.log(sorted);
-         for(let j = 0; j < sorted[0].length; j++){
-           var photo =document.createElement("div");
-           photo.setAttribute("class","photo");
-           photo.innerHTML = '<div class="l"><div class="watermark2"></div><img src="https://test-cms-alpha.herokuapp.com'+sorted[0][j].profile.avatars[0]+'"></div><div>'+sorted[0][j].profile.name+''+sorted[0][j].profile.age+'</div><div>'+sorted[0][j].profile.time+'</div>';
-           schedulesGirls.appendChild(photo);
-        
-           };
-     }          
-   }
-   xhr.send();
-   }
-   loadMySchedules()
