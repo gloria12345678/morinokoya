@@ -87,7 +87,7 @@ p{
     z-index: 80;
     background-size: 51%;
     position: relative;
-    bottom: 164px;
+    bottom: 160px;
   }
   .staPhotoffBoxSmall ul li img{
     width: 100%;
@@ -111,7 +111,7 @@ p{
     margin-top: 5px;
     color: #000000;
     border: 2px rgba(255, 255, 255, 0.67) solid;
-    font-size: 14px;
+    font-size: 20px;
   }
 .txt h4{
     height: 476px;
