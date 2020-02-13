@@ -11,7 +11,7 @@ xhr.onload = function(){
       for(let i = 0; i < json.length; i++) {
        var photo =document.createElement("div");
         photo.setAttribute("class","photo");
-        photo.innerHTML = '<div class="l" id="l'+i+'"><div class="watermark"></div><img src="https://test-cms-alpha.herokuapp.com'+json[i].avatars[0]+'"></div><div>'+json[i].name+'ちゃん</div><div>年齢:'+json[i].age+'</div>';
+        photo.innerHTML = '<div class="l" id="l'+i+'"><div class="watermark"></div><img src="https://test-cms-alpha.herokuapp.com'+json[i].avatars[0]+'"></div><div>'+json[i].name+'</div><div>年齢:'+json[i].age+'</div>';
         myList.appendChild(photo);
         var staffPro = document.getElementById('l'+i);
         staffPro.addEventListener('click', locationStaff, true);
